@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/constants/assets_image.dart';
 import 'package:grocery_app/constants/routes.dart';
 import 'package:grocery_app/screens/login/login.dart';
+import 'package:grocery_app/screens/sign_up/signup.dart';
 import 'package:grocery_app/widgets/primary_button/primary_button.dart';
 import 'package:grocery_app/widgets/top_title/top_title.dart';
 
@@ -55,7 +56,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 const SizedBox(height: 16,),
                 PrimaryButton(
                   title: 'Sign Up',
-                  onPressed: () {},
+                  onPressed: () {
+                    Routes.instance.push(const SignUpScreen(), context);
+                  },
                 ),
               ],
             ),

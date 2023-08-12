@@ -86,3 +86,24 @@ void showMessage(String message){
       return true;
     }
   }
+
+bool signUpValidation(String name, email, phone, password) {
+  if (name.isEmpty && email.isEmpty && phone.isEmpty && password.isEmpty) {
+    showMessage("All fields can't be empty");
+    return false;
+  } else if (name.isEmpty) {
+    showMessage("Name can't be empty");
+    return false;
+  } else if (email.isEmpty) {
+    showMessage("Email can't be empty");
+    return false;
+  } else if (phone.isEmpty) {
+    showMessage("Phone number can't be empty");
+    return false;
+  } else if (password.isEmpty) {
+    showMessage("Password can't be empty");
+    return false;
+  }else{
+    return true;
+  }
+}

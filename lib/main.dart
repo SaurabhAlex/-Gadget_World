@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/firebase_helper/firebase_auth_helper/auth_helper.dart';
 import 'package:grocery_app/firebase_options.dart';
+import 'package:grocery_app/screens/home/home.dart';
 import 'package:grocery_app/screens/welcome/welcome.dart';
 import 'constants/theme.dart';
 
@@ -16,10 +18,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'E commerce Demo',
+      title: 'Gadget World',
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      home: const WelcomeScreen(),
+      home: StreamBuilder(
+          stream: FirebaseAuthHelper.instance.getAuthChange,
+          builder: (context, snapshot){
+            if(snapshot.hasData){
+              return const HomeScreen();
+            }
+            return const WelcomeScreen();
+          }
+      )
     );
   }
 }
