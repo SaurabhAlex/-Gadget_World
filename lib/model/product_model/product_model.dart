@@ -17,7 +17,7 @@ class ProductModel {
   String image;
   String id;
   String name;
-  String price;
+  int price;
   String desc;
   String status;
   bool isFavourite;
