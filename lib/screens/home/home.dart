@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/firebase_helper/firestore_helper/firestore_helper.dart';
+import 'package:grocery_app/screens/product_details/product_details.dart';
 import 'package:grocery_app/screens/welcome/welcome.dart';
 import '../../constants/routes.dart';
 import '../../model/category_model/category_model.dart';
 import '../../model/product_model/product_model.dart';
+import '../category_view/category_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -75,16 +77,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: categoriesList.map((e) =>  Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Card(
-                        color: Colors.white,
-                        elevation: 13,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Image.network(e.image)
+                      child: InkWell(
+                        onTap: () {
+                          Routes.instance.push(CategoryViewScreen(categoryModel: e), context);
+                        } ,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 13,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 100,
+                                  width: 100,
+                                  child: Image.network(e.image)
+                                ),
+                                Text(
+                                  e.name,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16
+                                      ),)
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -105,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisCount: 2,
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 20,
-                      childAspectRatio: 0.9
+                      childAspectRatio: 0.8
                     ),
                     itemBuilder: (context, index){
                     ProductModel singleProduct = productModelList[index];
@@ -117,19 +137,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.network(singleProduct.image, height: 80,),
-                            const SizedBox(height: 5,),
+                            Image.network(singleProduct.image, height: 120,width: 80,),
                             Text( singleProduct.name,
                             style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold
                             ),),
                             Text("Price \$${singleProduct.price}"),
-                            const SizedBox(height: 5,),
                             OutlinedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Routes.instance.push(ProductDetails(singleProduct: singleProduct), context);
+                                },
                                 child: const Text("Buy", style:  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),)
-                            )
+                            ),
+                            const SizedBox(height: 5,),
                           ],
                         ),
                       );

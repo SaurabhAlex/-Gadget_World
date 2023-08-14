@@ -2,7 +2,19 @@ import 'package:flutter/material.dart';
 
 ThemeData themeData = ThemeData(
   scaffoldBackgroundColor: Colors.white,
-  primaryColor: Colors.red,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    titleTextStyle: TextStyle(
+      color: Colors.black
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.black
+    )
+  ),
+  primaryColor: Colors.purpleAccent,
+  canvasColor: Colors.purpleAccent,
+  primarySwatch: Colors.purple,
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
         foregroundColor: Colors.purpleAccent,
