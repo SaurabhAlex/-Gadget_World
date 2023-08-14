@@ -14,9 +14,19 @@ class SingleCardItem extends StatefulWidget {
 }
 
 class _SingleCardItemState extends State<SingleCardItem> {
+
+  @override
+  void initState() {
+   qty = widget.singleProduct.qty??0;
+   setState(() {
+
+   });
+    super.initState();
+  }
   int qty = 0;
   @override
   Widget build(BuildContext context) {
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
