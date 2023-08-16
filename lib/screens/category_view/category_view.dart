@@ -93,6 +93,11 @@ class _CategoryViewScreenState extends State<CategoryViewScreen> {
                               onPressed: () {
                                 Routes.instance.push(ProductDetails(singleProduct: singleProduct), context);
                               },
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)
+                                ),
+                              ),
                               child: const Text("Buy", style:  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),)
                           ),
                           const SizedBox(height: 5,),

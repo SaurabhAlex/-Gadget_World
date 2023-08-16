@@ -29,6 +29,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               onPressed: () {
                 Routes.instance.push(const CartScreen(), context);
               },
+
               icon: const Icon(Icons.shopping_cart)
           ),
         ],
@@ -108,6 +109,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                       appProvider.addCartProduct(productModel);
                       showMessage("Added to Cart");
                     },
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)
+                      ),
+                    ),
                     child: const Text("ADD TO CART", style: TextStyle(color: Colors.green),)
                 ),
                 const SizedBox(width: 12,),
@@ -117,6 +123,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                       onPressed: () {
                         Routes.instance.push(const FavouriteScreen(), context);
                       },
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)
+                        ),
+                      ),
                       child: const Text("BUY")
                   ),
                 )

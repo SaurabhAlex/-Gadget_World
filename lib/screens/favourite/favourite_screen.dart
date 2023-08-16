@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/screens/favourite/singlefavourite_item.dart';
 import 'package:provider/provider.dart';
-
 import '../../provider/app_provider.dart';
 
 class FavouriteScreen extends StatefulWidget {
