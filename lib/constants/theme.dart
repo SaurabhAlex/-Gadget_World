@@ -1,3 +1,4 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
 ThemeData themeData = ThemeData(
@@ -41,5 +42,6 @@ ThemeData themeData = ThemeData(
       ),
       disabledBackgroundColor: Colors.grey
     )
-  )
+  ),
+
 );

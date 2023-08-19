@@ -49,7 +49,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(widget.singleProduct.name,
-                  style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
                 ),
                 IconButton(
                     onPressed: () {
@@ -98,6 +98,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                     child: Icon(Icons.add),
                   ),
                 ),
+                const Spacer(),
+                Text("Price: \u{20B9}${widget.singleProduct.price}",
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),),
               ],
             ),
             Row(

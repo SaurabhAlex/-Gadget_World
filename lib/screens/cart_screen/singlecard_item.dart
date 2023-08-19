@@ -26,7 +26,7 @@ class _SingleCardItemState extends State<SingleCardItem> {
   int qty = 0;
   @override
   Widget build(BuildContext context) {
-    AppProvider appProvider = Provider.of<AppProvider>(context);
+    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -48,7 +48,11 @@ class _SingleCardItemState extends State<SingleCardItem> {
                       fontSize: 22,
                       fontWeight: FontWeight.bold
                   ),),
-                Text("Price \$${widget.singleProduct.price}"),
+                Text("Price: \u{20B9}${widget.singleProduct.price}",
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),),
                 Row(
                   children: [
                     CupertinoButton(
@@ -58,6 +62,7 @@ class _SingleCardItemState extends State<SingleCardItem> {
                             qty--;
                           }
                         });
+                        appProvider.updateQty(widget.singleProduct, qty);
                       },
                       child: const CircleAvatar(
                         radius: 15,
@@ -72,6 +77,7 @@ class _SingleCardItemState extends State<SingleCardItem> {
                         setState(() {
                           qty++;
                         });
+                        appProvider.updateQty(widget.singleProduct, qty);
                       },
                       child: const CircleAvatar(
                         radius: 15,
@@ -99,5 +105,6 @@ class _SingleCardItemState extends State<SingleCardItem> {
         ),
       ),
     );
+
   }
 }

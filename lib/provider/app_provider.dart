@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../model/product_model/product_model.dart';
 
 class AppProvider with ChangeNotifier{
@@ -33,4 +32,29 @@ class AppProvider with ChangeNotifier{
 
   List<ProductModel> get getFavouriteProductList => _favouriteProductList;
 
+//user information
+
+  void getUserInfoFirebase() async{
+
+  }
+
+//total Price
+  double totalPrice() {
+    double totalPrice = 0.0;
+    for(var element in _cartProductList){
+      totalPrice += element.price*element.qty!;
+    }
+    return totalPrice;
+  }
+
+  void updateQty(ProductModel productModel, int qty){
+    int index = _cartProductList.indexOf(productModel);
+    _cartProductList[index].qty = qty;
+    notifyListeners();
+  }
+
+
 }
+
+
+

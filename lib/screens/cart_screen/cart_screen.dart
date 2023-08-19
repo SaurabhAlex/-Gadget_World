@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/constants/routes.dart';
 import 'package:grocery_app/screens/cart_screen/singlecard_item.dart';
 import 'package:provider/provider.dart';
 import '../../provider/app_provider.dart';
+import '../../widgets/primary_button/primary_button.dart';
+import '../payment/payment.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -27,10 +30,35 @@ class _CartScreenState extends State<CartScreen> {
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SingleCardItem(singleProduct: appProvider.getCartProductList[index],)
+              child: SingleCardItem(singleProduct: appProvider.getCartProductList[index],),
             ),
+
           );
           }
+      ),
+      bottomNavigationBar:  Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          height: 100,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Text("Total", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  const Spacer(),
+                  Text('\u{20B9}${appProvider.totalPrice()}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                ],
+              ),
+              const SizedBox(height: 25,),
+              PrimaryButton(
+                title: "Checkout",
+                onPressed: () {
+                  Routes.instance.push(const PaymentScreen(), context);
+                },
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

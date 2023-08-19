@@ -144,10 +144,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             Image.network(singleProduct.image, height: 120,width: 80,),
                             Text( singleProduct.name,
                             style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold
                             ),),
-                            Text("Price \$${singleProduct.price}"),
+                            Text("Price: \u{20B9}${singleProduct.price}",
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400
+                              ),),
                             OutlinedButton(
                                 onPressed: () {
                                   Routes.instance.push(ProductDetails(singleProduct: singleProduct), context);

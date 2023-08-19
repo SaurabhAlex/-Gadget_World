@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/firebase_helper/firebase_auth_helper/auth_helper.dart';
 import 'package:grocery_app/firebase_options.dart';
 import 'package:grocery_app/provider/app_provider.dart';
+import 'package:grocery_app/screens/bottom_navBar/bottom_nav_bar.dart';
 import 'package:grocery_app/screens/home/home.dart';
+import 'package:grocery_app/screens/payment/payment.dart';
 import 'package:grocery_app/screens/welcome/welcome.dart';
 import 'package:provider/provider.dart';
 import 'constants/theme.dart';
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuthHelper.instance.getAuthChange,
             builder: (context, snapshot){
               if(snapshot.hasData){
-                return const HomeScreen();
+                return const BottomNavBar();
               }
               return const WelcomeScreen();
             }
