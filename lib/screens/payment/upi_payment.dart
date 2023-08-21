@@ -44,7 +44,7 @@ class _UPIPaymentState extends State<UPIPayment> {
       receiverName: 'Mr.Saurabh',
       transactionRefId: 'TestingUpiIndiaPlugin',
       transactionNote: 'Not actual. Just an example.',
-      amount: widget.finalTotalPrice ?? 0.0,
+      amount: widget.finalTotalPrice,
     );
   }
 
@@ -157,10 +157,9 @@ class _UPIPaymentState extends State<UPIPayment> {
                   future: _transaction,
                   builder: (BuildContext context, AsyncSnapshot<UpiResponse> snapshot){
                     if(snapshot.hasError){
-                      return const Center(
+                      return  Center(
                         child: Text(
-                            "error found"
-                          // _upiErrorHandler(snapshot.error.runtimeType),
+                          _upiErrorHandler(snapshot.error.runtimeType), style: header,
                         ),
                       );
                     }

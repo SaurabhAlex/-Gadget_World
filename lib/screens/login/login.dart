@@ -8,6 +8,8 @@ import 'package:grocery_app/widgets/primary_button/primary_button.dart';
 import 'package:grocery_app/widgets/top_title/top_title.dart';
 import 'package:grocery_app/constants/routes.dart';
 
+import '../bottom_navBar/bottom_nav_bar.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -64,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if(isValidated){
                     bool isLogined = await FirebaseAuthHelper.instance.login(email.text, password.text, context);
                   if(isLogined){
-                    Routes.instance.pushAndRemovedUntil(HomeScreen(), context);
+                    Routes.instance.pushAndRemovedUntil(BottomNavBar(), context);
                   }
                   }
                 },

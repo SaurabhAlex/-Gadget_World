@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onPressed: ()  async{
                     bool isValidated =  signUpValidation(name.text, email.text,phone.text, password.text);
                     if(isValidated){
-                      bool isLogined = await FirebaseAuthHelper.instance.signUp(email.text, password.text, context);
+                      bool isLogined = await FirebaseAuthHelper.instance.signUp(email.text,name.text, password.text, context);
                       if(isLogined){
                         Routes.instance.pushAndRemovedUntil(HomeScreen(), context);
                       }

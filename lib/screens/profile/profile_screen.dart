@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/firebase_helper/firebase_auth_helper/auth_helper.dart';
+import 'package:grocery_app/widgets/primary_button/primary_button.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/app_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -10,14 +15,68 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile Screen"),
+        title:const Text("Profile Screen",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+        centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(),
-          Text("Profile Screen"),
+          // appProvider.getUserInformation.image==null ?
+          const Icon(Icons.person, size: 100,),
+          // Image.network(appProvider.getUserInformation.image!),
+          Text(
+            "Alex Degos"
+            // appProvider.getUserInformation.name
+            , style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
+          const SizedBox(height: 4,),
+          Text(
+            "alex@gmail.com"
+            // appProvider.getUserInformation.email
+            , style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+          const SizedBox(height: 4,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 125.0, vertical: 12),
+            child: PrimaryButton(
+                title: "Edit Profile",
+              onPressed: () {},
+            ),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: const Icon(Icons.shopping_bag_outlined, size: 24),
+            title: const Text("Your Orders", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: const Icon(Icons.favorite_border, size: 24),
+            title: const Text("Favourite", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: const Icon(Icons.info_outlined, size: 24),
+            title: const Text("About us", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: const Icon(Icons.support_outlined, size: 24),
+            title: const Text("Support", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
+          ),
+          ListTile(
+            onTap: () {
+              FirebaseAuthHelper.instance.signOut();
+              setState(() {
+
+              });
+            },
+            leading: const Icon(Icons.logout_rounded, size: 24),
+            title: const Text("logout", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
+          ),
+          const SizedBox(height: 14,),
+          const Text("version 1.0.2", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
         ],
       ),
     );

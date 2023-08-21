@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/firebase_helper/firestore_helper/firestore_helper.dart';
+import 'package:grocery_app/provider/app_provider.dart';
 import 'package:grocery_app/screens/product_details/product_details.dart';
 import 'package:grocery_app/screens/welcome/welcome.dart';
+import 'package:provider/provider.dart';
 import '../../constants/routes.dart';
 import '../../model/category_model/category_model.dart';
 import '../../model/product_model/product_model.dart';
@@ -23,6 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<ProductModel> productModelList = [];
   @override
   void initState() {
+    AppProvider appProvider = Provider.of<AppProvider>(context,listen: false);
+    appProvider.getUserInfoFirebase();
     getCategoryList();
     super.initState();
   }

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/firebase_helper/firestore_helper/firestore_helper.dart';
 import '../model/product_model/product_model.dart';
+import '../model/user_model/user_model.dart';
 
 class AppProvider with ChangeNotifier{
 
-
+  UserModel? _userModel;
+  UserModel get getUserInformation => _userModel!;
   final List<ProductModel> _cartProductList = [];
+
+
   void addCartProduct(ProductModel productModel){
     _cartProductList.add(productModel);
     notifyListeners();
@@ -35,7 +40,8 @@ class AppProvider with ChangeNotifier{
 //user information
 
   void getUserInfoFirebase() async{
-
+    _userModel = await FirestoreHelper.instance.getUserInformation();
+    notifyListeners();
   }
 
 //total Price
@@ -53,6 +59,9 @@ class AppProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  void addBuyProduct(ProductModel model){
+
+  }
 
 }
 

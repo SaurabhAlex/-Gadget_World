@@ -43,6 +43,10 @@ dependencies:
   fluttertoast: ^8.2.2
   bottom_navy_bar: ^6.0.0
   upi_india: ^3.0.1
+  flutter_stripe: ^9.3.0
+  http: ^1.1.0
+  image_picker: ^1.0.2
+  firebase_messaging: ^14.6.6
 
 dev_dependencies:
   flutter_test:
