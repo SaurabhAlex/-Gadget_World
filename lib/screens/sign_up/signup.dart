@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/constants/routes.dart';
+import 'package:grocery_app/screens/bottom_navBar/bottom_nav_bar.dart';
 import 'package:grocery_app/screens/home/home.dart';
 import 'package:grocery_app/screens/login/login.dart';
 import 'package:grocery_app/widgets/primary_button/primary_button.dart';
@@ -83,9 +84,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onPressed: ()  async{
                     bool isValidated =  signUpValidation(name.text, email.text,phone.text, password.text);
                     if(isValidated){
-                      bool isLogined = await FirebaseAuthHelper.instance.signUp(email.text,name.text, password.text, context);
+                      bool isLogined = await FirebaseAuthHelper.instance.signUp(name.text, email.text, password.text, context);
                       if(isLogined){
-                        Routes.instance.pushAndRemovedUntil(HomeScreen(), context);
+                        Routes.instance.pushAndRemovedUntil(BottomNavBar(), context);
                       }
                     }
                   },

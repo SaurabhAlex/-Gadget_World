@@ -5,9 +5,11 @@ import '../model/user_model/user_model.dart';
 
 class AppProvider with ChangeNotifier{
 
+
+  final List<ProductModel> _cartProductList = [];
+
   UserModel? _userModel;
   UserModel get getUserInformation => _userModel!;
-  final List<ProductModel> _cartProductList = [];
 
 
   void addCartProduct(ProductModel productModel){

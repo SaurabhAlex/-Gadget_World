@@ -3,7 +3,9 @@ import 'package:grocery_app/firebase_helper/firebase_auth_helper/auth_helper.dar
 import 'package:grocery_app/widgets/primary_button/primary_button.dart';
 import 'package:provider/provider.dart';
 
+import '../../constants/routes.dart';
 import '../../provider/app_provider.dart';
+import '../edit_profile/edit_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -25,24 +27,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // appProvider.getUserInformation.image==null ?
-          const Icon(Icons.person, size: 100,),
-          // Image.network(appProvider.getUserInformation.image!),
+          appProvider.getUserInformation.image==null ?
+          const Icon(Icons.person, size: 100,):
+          Image.network(appProvider.getUserInformation.image!),
           Text(
-            "Alex Degos"
-            // appProvider.getUserInformation.name
+            // "Alexaaaa"
+            appProvider.getUserInformation.name!
             , style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
           const SizedBox(height: 4,),
           Text(
-            "alex@gmail.com"
-            // appProvider.getUserInformation.email
+            // "alex12@gmail.com"
+            appProvider.getUserInformation.email!
             , style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
           const SizedBox(height: 4,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 125.0, vertical: 12),
             child: PrimaryButton(
                 title: "Edit Profile",
-              onPressed: () {},
+              onPressed: () {
+                Routes.instance.push(const EditProfile(), context);
+              },
             ),
           ),
           ListTile(
