@@ -54,7 +54,10 @@ class _CartScreenState extends State<CartScreen> {
               PrimaryButton(
                 title: "Checkout",
                 onPressed: () {
-                  Routes.instance.push(const PaymentScreen(), context);
+                  // Routes.instance.push(const PaymentScreen(), context);
+                  FirebaseAuthHelper.instance.signOut();
+                  setState(() {
+                  });
                 },
               )
             ],
