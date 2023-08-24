@@ -5,6 +5,8 @@ import 'package:grocery_app/screens/favourite/favourite_screen.dart';
 import 'package:grocery_app/screens/home/home.dart';
 import 'package:grocery_app/screens/profile/profile_screen.dart';
 
+import '../order_screen/order_screen.dart';
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 
@@ -40,13 +42,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
           children: const <Widget>[
             HomeScreen(),
             CartScreen(),
-            FavouriteScreen(),
+            OrderScreen(),
             ProfileScreen()
           ],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
-        backgroundColor: Colors.purpleAccent.withOpacity(0.4),
+        backgroundColor: const Color(0xffc94810).withOpacity(0.6),
         iconSize: 27,
 
         selectedIndex: _currentIndex,
@@ -62,18 +64,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           BottomNavyBarItem(
               activeColor: Colors.black,
-              title:  Text('Cart'),
-              icon:  Icon(Icons.shopping_cart)
+              title:  const Text('Cart'),
+              icon:  const Icon(Icons.shopping_cart)
           ),
           BottomNavyBarItem(
               activeColor: Colors.black,
-              title:  Text('Orders'),
-              icon:  Icon(Icons.newspaper_outlined,)
+              title:  const Text('Orders'),
+              icon:  const Icon(Icons.reorder,)
           ),
           BottomNavyBarItem(
               activeColor: Colors.black,
-              title:  Text('Profile'),
-              icon:  Icon(Icons.person,)
+              title:  const Text('Profile'),
+              icon:  const Icon(Icons.person,)
           ),
         ],
       ),

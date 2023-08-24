@@ -86,7 +86,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     if(isValidated){
                       bool isLogined = await FirebaseAuthHelper.instance.signUp(name.text, email.text, password.text, context);
                       if(isLogined){
-                        Routes.instance.pushAndRemovedUntil(BottomNavBar(), context);
+                        showMessage("Account has been successfully created");
+                        Routes.instance.pushAndRemovedUntil(LoginScreen(), context);
                       }
                     }
                   },

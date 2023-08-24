@@ -17,6 +17,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     return  Scaffold(
       appBar: AppBar(
         title: const Text("Favourite Screen",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+        centerTitle: true,
       ),
       body:  appProvider.getFavouriteProductList.isEmpty ? const Center(
         child: Text("Favourite List is Empty"),

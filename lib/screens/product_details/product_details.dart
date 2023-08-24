@@ -6,8 +6,7 @@ import 'package:grocery_app/model/product_model/product_model.dart';
 import 'package:grocery_app/provider/app_provider.dart';
 import 'package:grocery_app/screens/cart_screen/cart_screen.dart';
 import 'package:provider/provider.dart';
-
-import '../favourite/favourite_screen.dart';
+import '../payment/payment.dart';
 
 class ProductDetails extends StatefulWidget {
   final ProductModel singleProduct;
@@ -127,7 +126,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   width: 136,
                   child: ElevatedButton(
                       onPressed: () {
-                        Routes.instance.push(const FavouriteScreen(), context);
+                        Routes.instance.push(const PaymentScreen(), context);
                       },
                       style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(

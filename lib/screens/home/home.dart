@@ -90,8 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Routes.instance.push(CategoryViewScreen(categoryModel: e), context);
                             } ,
                             child: Card(
-                              color: Colors.white,
-                              elevation: 13,
+                              color:  const Color(0xffe8b923).withOpacity(0.4),
+                              elevation: 2,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ProductModel singleProduct = productModelList[index];
                         return Container(
                           decoration: BoxDecoration(
-                              color: Colors.purpleAccent.withOpacity(0.3),
+                              color:  Color(0xffe8b923).withOpacity(0.5),
                               borderRadius: BorderRadius.circular(10)
                           ),
                           child: Column(

@@ -1,21 +1,20 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
 ThemeData themeData = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.white,
+  scaffoldBackgroundColor: const Color(0xffffffe0),
+  appBarTheme:  AppBarTheme(
+    backgroundColor: const Color(0xffe8b923).withOpacity(0.7),
     elevation: 0,
-    titleTextStyle: TextStyle(
+    titleTextStyle: const TextStyle(
       color: Colors.black
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: Colors.black
     )
   ),
-  primaryColor: Colors.purpleAccent,
-  canvasColor: Colors.purpleAccent,
-  primarySwatch: Colors.purple,
+  primaryColor:const Color(0xffc94810),
+  canvasColor: const Color(0xff90EE90),
+  primarySwatch: Colors.lightBlue,
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
         foregroundColor: Colors.purpleAccent,
@@ -36,7 +35,7 @@ ThemeData themeData = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.red,
+      backgroundColor: const Color(0xff1191d1),
       textStyle: const TextStyle(
         fontSize: 18
       ),

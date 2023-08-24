@@ -21,6 +21,7 @@ class _CartScreenState extends State<CartScreen> {
     return  Scaffold(
       appBar: AppBar(
         title: const Text("Cart Screen",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+        centerTitle: true,
       ),
       body:  appProvider.getCartProductList.isEmpty ? const Center(
         child: Text("Cart List is Empty"),

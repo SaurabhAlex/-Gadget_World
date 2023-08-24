@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../constants/routes.dart';
 import '../../provider/app_provider.dart';
 import '../edit_profile/edit_profile.dart';
+import '../favourite/favourite_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -59,7 +60,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: const Text("Your Orders", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Routes.instance.push(const FavouriteScreen(), context);
+              },
               leading: const Icon(Icons.favorite_border, size: 24),
               title: const Text("Favourite", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             ),

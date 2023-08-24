@@ -41,11 +41,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
               child: Row(
                 children: [
                   Radio(
-                    value: 0,
+                    value: 1,
                     groupValue: _groupValue,
                     onChanged: (value) {
                       setState(() {
-                        _groupValue = value;
+                        _groupValue != value;
                       });
                     },
                   ),
@@ -84,16 +84,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
             ),
             const SizedBox(height: 24,),
-            PrimaryButton(
-                title: "Continue",
-                onPressed: () async{
-                  double totalPrice = appProvider.totalPrice() * 100;
-                  bool isSuccessfullyPayment = await StripeHelper.instance.makePayment(totalPrice.toString());
-                  if(isSuccessfullyPayment){
-                    // bool value = await FirebaseFirestore.instance.
-                  }
-                },
-            ),
             const Spacer(),
             Row(
               children: [
