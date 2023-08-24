@@ -33,7 +33,6 @@ class _CartScreenState extends State<CartScreen> {
               padding: const EdgeInsets.all(8.0),
               child: SingleCardItem(singleProduct: appProvider.getCartProductList[index],),
             ),
-
           );
           }
       ),
@@ -54,10 +53,7 @@ class _CartScreenState extends State<CartScreen> {
               PrimaryButton(
                 title: "Checkout",
                 onPressed: () {
-                  // Routes.instance.push(const PaymentScreen(), context);
-                  FirebaseAuthHelper.instance.signOut();
-                  setState(() {
-                  });
+                  Routes.instance.push(const PaymentScreen(), context);
                 },
               )
             ],

@@ -38,7 +38,6 @@ class _SingleFavouriteItemState extends State<SingleFavouriteItem> {
                     fontWeight: FontWeight.bold
                 ),),
               Text("Price \$${widget.singleProduct.price}"),
-              // TextButton(onPressed: () {}, child: const Text("Add to Cart")),
               ElevatedButton.icon(
                 onPressed: () {
                   ProductModel productModel = widget.singleProduct.copyWith(qty: qty);
@@ -71,9 +70,7 @@ class _SingleFavouriteItemState extends State<SingleFavouriteItem> {
               child: Icon(Icons.delete, size: 19,color: Colors.white,),
             ),
           ),
-
         ],
-
       ),
     );
   }

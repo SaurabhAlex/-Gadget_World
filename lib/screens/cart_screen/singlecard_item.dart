@@ -101,10 +101,8 @@ class _SingleCardItemState extends State<SingleCardItem> {
               ),
             ),
           ],
-
         ),
       ),
     );
-
   }
 }

@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/constants/constants.dart';
 import 'package:grocery_app/firebase_helper/firebase_auth_helper/auth_helper.dart';
-
-import '../../model/user_model/user_model.dart';
 import '../../widgets/primary_button/primary_button.dart';
 
 class ChangePasswordSC extends StatefulWidget {
@@ -16,8 +13,8 @@ class ChangePasswordSC extends StatefulWidget {
 class _ChangePasswordSCState extends State<ChangePasswordSC> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController newpassword = TextEditingController();
-    TextEditingController cpassword = TextEditingController();
+    TextEditingController newPassword = TextEditingController();
+    TextEditingController cPassword = TextEditingController();
     bool isShowPassword = true;
     return Scaffold(
         appBar: AppBar(
@@ -29,34 +26,34 @@ class _ChangePasswordSCState extends State<ChangePasswordSC> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
             TextFormField(
-              controller: newpassword,
+              controller: newPassword,
               obscureText: isShowPassword,
               decoration: const InputDecoration(
-                  hintText: "New Password",
-                  prefixIcon: Icon(Icons.lock),
+                hintText: "New Password",
+                prefixIcon: Icon(Icons.lock),
               ),
             ),
             const SizedBox(height: 22,),
             TextFormField(
-              controller: cpassword,
+              controller: cPassword,
               obscureText: isShowPassword,
               decoration: const InputDecoration(
-                  hintText: "Confirm Password",
-                  prefixIcon: Icon(Icons.lock),
+                hintText: "Confirm Password",
+                prefixIcon: Icon(Icons.lock),
               ),
             ),
             const SizedBox(height: 22,),
             PrimaryButton(
               title: "Update",
               onPressed: () async{
-                if(newpassword.text.isEmpty){
+                if(newPassword.text.isEmpty){
                   showMessage("Password can not be empty!");
-                }else if(cpassword.text.isEmpty){
+                }else if(cPassword.text.isEmpty){
                   showMessage("Confirm Password is Required!");
-                }else if(newpassword.text == cpassword.text){
-                  FirebaseAuthHelper.instance.changePassword(newpassword.text, context);
+                }else if(newPassword.text == cPassword.text){
+                  FirebaseAuthHelper.instance.changePassword(newPassword.text, context);
                 }else{
-                showMessage("Confirm password is not matching!");
+                  showMessage("Confirm password is not matching!");
                 }
               },
             )

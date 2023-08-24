@@ -23,12 +23,11 @@ class _EditProfileState extends State<EditProfile> {
   File? image;
 
   Future takePicture() async{
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 80, );
 
     if(pickedFile!= null){
       image = File(pickedFile.path);
       setState(() {
-
       });
     }else{
       print("No image selected");

@@ -93,7 +93,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     // bool value = await FirebaseFirestore.instance.
                   }
                 },
-
             ),
             const Spacer(),
             Row(

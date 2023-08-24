@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               radius: 70,
             ),
             appProvider.getUserInformation.name==null
-            ? Text("No data Found")
+            ? const Text("No data Found")
             : Text(
               appProvider.getUserInformation.name!
               , style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),

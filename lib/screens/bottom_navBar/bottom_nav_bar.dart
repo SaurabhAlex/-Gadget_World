@@ -37,7 +37,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: <Widget>[
+          children: const <Widget>[
             HomeScreen(),
             CartScreen(),
             FavouriteScreen(),
