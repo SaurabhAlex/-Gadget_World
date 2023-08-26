@@ -48,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
-        backgroundColor: const Color(0xffc94810).withOpacity(0.6),
+        backgroundColor: Colors.purpleAccent.withOpacity(0.6),
         iconSize: 27,
 
         selectedIndex: _currentIndex,

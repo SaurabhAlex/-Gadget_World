@@ -12,6 +12,7 @@ class AppProvider with ChangeNotifier{
 
 
   final List<ProductModel> _cartProductList = [];
+  final List<ProductModel> _buyProductList = [];
 
   UserModel? _userModel;
   UserModel get getUserInformation => _userModel!;
@@ -84,6 +85,14 @@ class AppProvider with ChangeNotifier{
     return totalPrice;
   }
 
+  double totalPriceBuyProductList() {
+    double totalPrice = 0.0;
+    for(var element in _buyProductList){
+      totalPrice += element.price*element.qty!;
+    }
+    return totalPrice;
+  }
+
   void updateQty(ProductModel productModel, int qty){
     int index = _cartProductList.indexOf(productModel);
     _cartProductList[index].qty = qty;
@@ -91,8 +100,26 @@ class AppProvider with ChangeNotifier{
   }
 
   void addBuyProduct(ProductModel model){
-
+    _buyProductList.add(model);
+    notifyListeners();
   }
+
+  void addBuyProductCartList(){
+    _buyProductList.addAll(_cartProductList);
+    notifyListeners();
+  }
+
+  void clearCart(){
+    _cartProductList.clear();
+    notifyListeners();
+  }
+
+  void clearBuyProduct(){
+    _buyProductList.clear();
+    notifyListeners();
+  }
+
+  List<ProductModel> get getBuyProductList => _buyProductList;
 
 }
 

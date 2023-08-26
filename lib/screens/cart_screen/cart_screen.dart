@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../firebase_helper/firebase_auth_helper/auth_helper.dart';
 import '../../provider/app_provider.dart';
 import '../../widgets/primary_button/primary_button.dart';
+import '../cart_item_checkout/card_item_checkout.dart';
 import '../payment/payment.dart';
 
 class CartScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return  Scaffold(
       appBar: AppBar(
         title: const Text("Cart Screen",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
@@ -54,7 +55,10 @@ class _CartScreenState extends State<CartScreen> {
               PrimaryButton(
                 title: "Checkout",
                 onPressed: () {
-                  Routes.instance.push(const PaymentScreen(), context);
+                  appProvider.clearBuyProduct();
+                  appProvider.addBuyProductCartList();
+                  appProvider.clearCart();
+                  Routes.instance.push(  const CartItemCheckout(), context);
                 },
               )
             ],

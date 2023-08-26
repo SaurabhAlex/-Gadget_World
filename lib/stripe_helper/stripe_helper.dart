@@ -2,13 +2,20 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:grocery_app/constants/constants.dart';
+import 'package:grocery_app/provider/app_provider.dart';
 import 'package:http/http.dart'as http;
+import 'package:provider/provider.dart';
+
+import '../constants/routes.dart';
+import '../firebase_helper/firestore_helper/firestore_helper.dart';
+import '../screens/bottom_navBar/bottom_nav_bar.dart';
 
 class StripeHelper{
   static StripeHelper instance = StripeHelper();
 
   Map<String, dynamic>? paymentIntent;
-  Future<bool> makePayment(String amount) async{
+  Future<void> makePayment(String amount, BuildContext context) async{
     try{
       paymentIntent = await createPaymentIntent(amount, "USD");
 
@@ -29,25 +36,34 @@ class StripeHelper{
           )
       ).then((value) { });
 
-
       //display payment sheet
 
-      displayPaymentSheet();
-      return true;
+      displayPaymentSheet(context);
+
     }catch(er){
-      print(er);
-      return false;
+      showMessage(er.toString());
+      print(er.toString());
     }
   }
 
-  displayPaymentSheet() async{
+  displayPaymentSheet(BuildContext context) async{
+    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
     try{
-      await Stripe.instance.presentPaymentSheet().then((value) {
-        print("Payment Successful");
+      await Stripe.instance.presentPaymentSheet().then((value) async{
+          bool value = await FirestoreHelper.instance.uploadOrderedProductFirebase(
+              appProvider.getBuyProductList, context, "Paid"
+          );
+          appProvider.clearBuyProduct();
+          if(value){
+            Future.delayed(const Duration(seconds: 2), () {
+              Routes.instance.push(const BottomNavBar(), context);
+            });
+          }
+
       });
     }catch(e){
+      showMessage(e.toString());
       print(e);
-      return false;
     }
   }
 

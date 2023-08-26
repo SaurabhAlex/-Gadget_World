@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/firebase_helper/firebase_auth_helper/auth_helper.dart';
+import 'package:grocery_app/screens/about_us/about_us.dart';
 import 'package:grocery_app/screens/change_password/change_password.dart';
+import 'package:grocery_app/screens/order_screen/order_screen.dart';
 import 'package:grocery_app/widgets/primary_button/primary_button.dart';
 import 'package:provider/provider.dart';
 import '../../constants/routes.dart';
@@ -30,10 +32,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             appProvider.getUserInformation.image==null ?
-            const Icon(Icons.person, size: 120,):
+            const Icon(Icons.person, size: 110,):
             CircleAvatar(
               backgroundImage: NetworkImage(appProvider.getUserInformation.image!),
-              radius: 70,
+              radius: 60,
             ),
             appProvider.getUserInformation.name==null
             ? const Text("No data Found")
@@ -55,7 +57,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Routes.instance.push(const OrderScreen(), context);
+              },
               leading: const Icon(Icons.shopping_bag_outlined, size: 24),
               title: const Text("Your Orders", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             ),
@@ -67,7 +71,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: const Text("Favourite", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Routes.instance.push(const AboutUsScreen(), context);
+              },
               leading: const Icon(Icons.info_outlined, size: 24),
               title: const Text("About us", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             ),
@@ -78,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             ListTile(
               onTap: () {
-                Routes.instance.push(ChangePasswordSC(), context);
+                Routes.instance.push(const ChangePasswordSC(), context);
               },
               leading: const Icon(Icons.lock_open_rounded, size: 24),
               title: const Text("Change Password", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),

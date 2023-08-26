@@ -10,7 +10,6 @@ class ProductModel {
     required this.name,
     required this.price,
     required this.desc,
-    required this.status,
     required this.isFavourite,
     this.qty,
   });
@@ -20,7 +19,6 @@ class ProductModel {
   String name;
   int price;
   String desc;
-  String status;
   bool isFavourite;
   int? qty;
 
@@ -31,7 +29,6 @@ class ProductModel {
         image: json["image"],
         price: json["price"],
         desc: json["desc"],
-        status: json["status"],
         isFavourite: false,
         qty: json["qty"],
       );
@@ -44,7 +41,6 @@ class ProductModel {
         "image": image,
         "price": price,
         "desc": desc,
-        "status": status,
         "isFavourite": isFavourite,
         "qty": qty,
       };
@@ -57,7 +53,6 @@ class ProductModel {
       name: name,
       price: price,
       desc: desc,
-      status: status,
       isFavourite: isFavourite,
       qty: qty ?? this.qty
   );

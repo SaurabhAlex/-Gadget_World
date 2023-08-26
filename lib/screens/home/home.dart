@@ -35,13 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       isLoading = true;
     });
+    FirestoreHelper.instance.updateTokenFromFirebase();
     categoriesList = await FirestoreHelper.instance.getCategories();
     productModelList = await FirestoreHelper.instance.getBestProducts();
     productModelList.shuffle();
-
     setState(() {
       isLoading = false;
     });
+  }
+
+  TextEditingController search = TextEditingController();
+  List<ProductModel> searchList = [];
+  void searchProducts(String value) {
+    searchList = productModelList.where((element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
+    setState(() {  });
   }
   @override
   Widget build(BuildContext context) {
@@ -61,10 +68,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Gadget World", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  const Text("Tech Junction", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: search,
+                      onChanged: (String value) {
+                        searchProducts(value);
+                      },
                       decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.search_rounded),
                           border: OutlineInputBorder(
@@ -90,8 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Routes.instance.push(CategoryViewScreen(categoryModel: e), context);
                             } ,
                             child: Card(
-                              color:  const Color(0xffe8b923).withOpacity(0.4),
-                              elevation: 2,
+                              color:  Colors.white,
+                              elevation: 14,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -120,58 +131,115 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 10,),
-                  const Text("Best Products", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  !isSearched()? const Text("Best Products", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),)
+                  :SizedBox.fromSize(),
                   const SizedBox(height: 12,),
-                  productModelList.isEmpty? const Center(
-                    child: Text("productModelList is Empty"),
-                  ):
-                  GridView.builder(
-                      shrinkWrap: true,
-                      primary: false,
-                      itemCount: productModelList.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 20,
-                          crossAxisSpacing: 20,
-                          childAspectRatio: 0.8
-                      ),
-                      itemBuilder: (context, index){
-                        ProductModel singleProduct = productModelList[index];
-                        return Container(
-                          decoration: BoxDecoration(
-                              color:  Color(0xffe8b923).withOpacity(0.5),
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Image.network(singleProduct.image, height: 120,width: 80,),
-                              Text( singleProduct.name,
-                                style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text("Price: \u{20B9}${singleProduct.price}",
-                                style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400
-                                ),),
-                              OutlinedButton(
-                                  onPressed: () {
-                                    Routes.instance.push(ProductDetails(singleProduct: singleProduct), context);
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12)
+                  search.text.isNotEmpty && searchList.isEmpty? const Center(child: Text("No Product Found"),):
+                      searchList.isNotEmpty?
+                      Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: GridView.builder(
+                            shrinkWrap: true,
+                            primary: false,
+                            itemCount: searchList.length,
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 20,
+                                crossAxisSpacing: 20,
+                                childAspectRatio: 0.8
+                            ),
+                            itemBuilder: (context, index){
+                              ProductModel singleProduct = searchList[index];
+                              return Container(
+                                decoration: BoxDecoration(
+                                    color:  Colors.purpleAccent.withOpacity(0.5),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.network(singleProduct.image, height: 120,width: 80,),
+                                    Text( singleProduct.name,
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text("Price: \u{20B9}${singleProduct.price}",
+                                      style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400
+                                      ),),
+                                    OutlinedButton(
+                                        onPressed: () {
+                                          Routes.instance.push(ProductDetails(singleProduct: singleProduct), context);
+                                        },
+                                        style: OutlinedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12)
+                                          ),
+                                        ),
+                                        child: const Text("Buy", style:  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),)
                                     ),
-                                  ),
-                                  child: const Text("Buy", style:  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),)
-                              ),
-                              const SizedBox(height: 5,),
-                            ],
-                          ),
-                        );
-                      }
+                                    const SizedBox(height: 5,),
+                                  ],
+                                ),
+                              );
+                            }
+                        ),
+                      ):
+                  productModelList.isEmpty? const Center(
+                    child: Text("Best Products is Empty"),
+                  ):
+                  Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: GridView.builder(
+                        shrinkWrap: true,
+                        primary: false,
+                        itemCount: productModelList.length,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 20,
+                            crossAxisSpacing: 20,
+                            childAspectRatio: 0.8
+                        ),
+                        itemBuilder: (context, index){
+                          ProductModel singleProduct = productModelList[index];
+                          return Container(
+                            decoration: BoxDecoration(
+                                color:  Colors.purpleAccent.withOpacity(0.5),
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image.network(singleProduct.image, height: 120,width: 80,),
+                                Text( singleProduct.name,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                  ),),
+                                Text("Price: \u{20B9}${singleProduct.price}",
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400
+                                  ),),
+                                OutlinedButton(
+                                    onPressed: () {
+                                      Routes.instance.push(ProductDetails(singleProduct: singleProduct), context);
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(12)
+                                      ),
+                                    ),
+                                    child: const Text("Buy", style:  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),)
+                                ),
+                                const SizedBox(height: 5,),
+                              ],
+                            ),
+                          );
+                        }
+                    ),
                   )
                 ],
               ),
@@ -179,6 +247,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         )
     );
+  }
+
+
+  bool isSearched(){
+    if(search.text.isNotEmpty && searchList.isEmpty){
+      return true;
+    }else if(search.text.isEmpty && searchList.isNotEmpty){
+      return false;
+    }else if(searchList.isNotEmpty){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 

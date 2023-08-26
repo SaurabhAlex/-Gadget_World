@@ -76,7 +76,7 @@ class _CategoryViewScreenState extends State<CategoryViewScreen> {
                     ProductModel singleProduct = productModelList[index];
                     return Container(
                       decoration: BoxDecoration(
-                          color: const Color(0xffe8b923).withOpacity(0.4),
+                          color: Colors.purpleAccent.withOpacity(0.4),
                           borderRadius: BorderRadius.circular(10)
                       ),
                       child: Column(
@@ -88,7 +88,7 @@ class _CategoryViewScreenState extends State<CategoryViewScreen> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold
                             ),),
-                          Text("Price \$${singleProduct.price}"),
+                          Text("Price \u{20B9}${singleProduct.price}"),
                           OutlinedButton(
                               onPressed: () {
                                 Routes.instance.push(ProductDetails(singleProduct: singleProduct), context);

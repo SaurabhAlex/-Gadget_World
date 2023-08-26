@@ -57,11 +57,11 @@ class _SingleCardItemState extends State<SingleCardItem> {
                   children: [
                     CupertinoButton(
                       onPressed: () {
-                        setState(() {
-                          if(qty>=2){
+                        if(qty>=2){
+                          setState(() {
                             qty--;
-                          }
-                        });
+                          });
+                        }
                         appProvider.updateQty(widget.singleProduct, qty);
                       },
                       child: const CircleAvatar(
