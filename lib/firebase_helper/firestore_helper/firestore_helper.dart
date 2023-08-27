@@ -107,7 +107,8 @@ class FirestoreHelper {
 
       return orderList;
     }catch(e){
-      showMessage(e.toString());
+      print("Error in GetUserOrder function : " +e.toString());
+      // showMessage(e.toString());
       return [];
     }
   }

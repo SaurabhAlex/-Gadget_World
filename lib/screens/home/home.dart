@@ -68,7 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Tech Junction", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  // const Text("Tech Junction", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  Align(
+                    alignment: Alignment.center,
+                      child: Image.asset("assets/images/applogo.png", scale: 2,)),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -86,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 8,),
-                  const Text("Items", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  const Text("Categories", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                   const SizedBox(height: 10,),
                   categoriesList.isEmpty? const Center(
                     child: Text("Categories is Empty"),

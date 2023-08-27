@@ -42,7 +42,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           children: const <Widget>[
             HomeScreen(),
             CartScreen(),
-            OrderScreen(),
+            FavouriteScreen(),
             ProfileScreen()
           ],
         ),
@@ -59,8 +59,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
             activeColor: Colors.black,
-              title:  Text('Home'),
-              icon:  Icon(Icons.home)
+              title:  const Text('Home'),
+              icon:  const Icon(Icons.home)
           ),
           BottomNavyBarItem(
               activeColor: Colors.black,
@@ -69,7 +69,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           BottomNavyBarItem(
               activeColor: Colors.black,
-              title:  const Text('Orders'),
+              title:  const Text('Favourite'),
               icon:  const Icon(Icons.reorder,)
           ),
           BottomNavyBarItem(

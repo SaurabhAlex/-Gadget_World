@@ -41,7 +41,7 @@ class StripeHelper{
       displayPaymentSheet(context);
 
     }catch(er){
-      showMessage(er.toString());
+      showMessage("This Feature is Under maintenance");
       print(er.toString());
     }
   }

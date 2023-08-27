@@ -123,7 +123,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             PrimaryButton(
               title: "Checkout",
               onPressed: () {
-                Routes.instance.push( UPIPayment(finalTotalPrice: '\u{20B9}${appProvider.totalPrice()}',), context);
+                Routes.instance.push( UpiPayment(), context);
               },
             )
           ],
