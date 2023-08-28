@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // const Text("Tech Junction", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                   Align(
                     alignment: Alignment.center,
-                      child: Image.asset("assets/images/applogo.png", scale: 2,)),
+                      child: Image.asset("assets/images/applogo.png", scale: 8,)),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ProductModel singleProduct = searchList[index];
                               return Container(
                                 decoration: BoxDecoration(
-                                    color:  Colors.purpleAccent.withOpacity(0.5),
+                                    color: Colors.purpleAccent.withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(10)
                                 ),
                                 child: Column(
@@ -201,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: productModelList.length,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            mainAxisSpacing: 20,
+                            mainAxisSpacing: 10,
                             crossAxisSpacing: 20,
                             childAspectRatio: 0.8
                         ),
@@ -209,8 +209,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ProductModel singleProduct = productModelList[index];
                           return Container(
                             decoration: BoxDecoration(
-                                color:  Colors.purpleAccent.withOpacity(0.5),
-                                borderRadius: BorderRadius.circular(10)
+                                color:  Colors.white.withOpacity(0.5),
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Colors.purpleAccent, width: 1)
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

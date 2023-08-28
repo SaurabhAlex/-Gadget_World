@@ -36,7 +36,7 @@ ThemeData themeData = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.purple,
           textStyle: const TextStyle(
               fontSize: 18
           ),

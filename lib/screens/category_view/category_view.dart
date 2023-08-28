@@ -76,8 +76,9 @@ class _CategoryViewScreenState extends State<CategoryViewScreen> {
                     ProductModel singleProduct = productModelList[index];
                     return Container(
                       decoration: BoxDecoration(
-                          color: Colors.purpleAccent.withOpacity(0.4),
-                          borderRadius: BorderRadius.circular(10)
+                          color: Colors.white.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.purpleAccent, width: 1)
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

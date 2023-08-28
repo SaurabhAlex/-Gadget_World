@@ -37,7 +37,7 @@ class _SingleFavouriteItemState extends State<SingleFavouriteItem> {
                     fontSize: 22,
                     fontWeight: FontWeight.bold
                 ),),
-              Text("Price \$${widget.singleProduct.price}"),
+              Text("Price  \u{20B9}${widget.singleProduct.price}"),
               ElevatedButton.icon(
                 onPressed: () {
                   ProductModel productModel = widget.singleProduct.copyWith(qty: qty);
