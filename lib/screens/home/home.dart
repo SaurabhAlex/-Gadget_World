@@ -71,9 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   // const Text("Tech Junction", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                   Align(
                     alignment: Alignment.center,
-                      child: Image.asset("assets/images/applogo.png", scale: 8,)),
+                      child: Image.asset("assets/images/applogo.png", scale: 10,)),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 4),
                     child: TextFormField(
                       controller: search,
                       onChanged: (String value) {
@@ -88,9 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8,),
-                  const Text("Categories", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 2,),
+                  const Text("Categories", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                  const SizedBox(height: 6,),
                   categoriesList.isEmpty? const Center(
                     child: Text("Categories is Empty"),
                   ):
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       e.name,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 16
+                                          fontSize: 15
                                       ),)
                                   ],
                                 ),
@@ -133,10 +133,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ).toList()
                     ),
                   ),
-                  const SizedBox(height: 10,),
-                  !isSearched()? const Text("Best Products", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),)
+                  const SizedBox(height: 6,),
+                  !isSearched()? const Text("Best Products", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
                   :SizedBox.fromSize(),
-                  const SizedBox(height: 12,),
+                  const SizedBox(height: 6,),
                   search.text.isNotEmpty && searchList.isEmpty? const Center(child: Text("No Product Found"),):
                       searchList.isNotEmpty?
                       Padding(
@@ -161,10 +161,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Image.network(singleProduct.image, height: 120,width: 80,),
+                                    Image.network(singleProduct.image, height: 120,width: 100,),
                                     Text( singleProduct.name,
                                       style: const TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold
                                       ),),
                                     Text("Price: \u{20B9}${singleProduct.price}",
@@ -216,10 +216,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Image.network(singleProduct.image, height: 120,width: 80,),
+                                Image.network(singleProduct.image, height: 120,width: 100,),
                                 Text( singleProduct.name,
                                   style: const TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.bold
                                   ),),
                                 Text("Price: \u{20B9}${singleProduct.price}",
@@ -233,7 +233,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                     style: OutlinedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(12)
+                                          borderRadius: BorderRadius.circular(12),
+                                        side: const BorderSide(style: BorderStyle.solid, width: 2,)
+
                                       ),
                                     ),
                                     child: const Text("Buy", style:  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),)

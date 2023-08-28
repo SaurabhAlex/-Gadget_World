@@ -83,7 +83,7 @@ class _CategoryViewScreenState extends State<CategoryViewScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Image.network(singleProduct.image, height: 120,width: 80,),
+                          Image.network(singleProduct.image, height: 120,width: 100,),
                           Text( singleProduct.name,
                             style: const TextStyle(
                                 fontSize: 16,
@@ -96,7 +96,8 @@ class _CategoryViewScreenState extends State<CategoryViewScreen> {
                               },
                               style: OutlinedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12)
+                                    borderRadius: BorderRadius.circular(12),
+
                                 ),
                               ),
                               child: const Text("Buy", style:  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),)

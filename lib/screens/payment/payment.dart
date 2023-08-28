@@ -22,7 +22,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     AppProvider appProvider = Provider.of<AppProvider>(context);
-    int groupValue = 2 ;
+    int groupValue = 0 ;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Checkout",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
@@ -49,7 +49,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     groupValue: groupValue,
                     onChanged: (value) {
                       setState(() {
-                        groupValue = value!;
+                        groupValue = 1;
                       });
                     },
                   ),
@@ -77,7 +77,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     groupValue: groupValue,
                     onChanged: (value) {
                       setState(() {
-                        groupValue = value!;
+                        groupValue = 2;
                       });
                     },
                   ),
