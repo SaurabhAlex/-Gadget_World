@@ -8,6 +8,7 @@ import 'package:grocery_app/screens/cart_screen/cart_screen.dart';
 import 'package:provider/provider.dart';
 import '../payment/payment.dart';
 
+
 class ProductDetails extends StatefulWidget {
   final ProductModel singleProduct;
   const ProductDetails({Key? key, required this.singleProduct}) : super(key: key);

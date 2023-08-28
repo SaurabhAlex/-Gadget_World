@@ -19,10 +19,20 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
+  int selectedValueItems = 0  ;
+  @override
+  void initState() {
+    super.initState();
+    selectedValueItems = 1;
+  }
+  void setSelectedValue(int val) {
+    setState(() {
+      selectedValueItems = val;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     AppProvider appProvider = Provider.of<AppProvider>(context);
-    int groupValue = 0 ;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Checkout",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
@@ -38,19 +48,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Theme.of(context).primaryColor,
-                  width: 3.0
+                    color: Theme.of(context).primaryColor,
+                    width: 2.0
                 ),
               ),
               child: Row(
                 children: [
                   Radio(
                     value: 1,
-                    groupValue: groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        groupValue = 1;
-                      });
+                    groupValue: selectedValueItems,
+                    onChanged: (val) {
+                      setSelectedValue(val!);
                     },
                   ),
                   const Icon(Icons.money, size: 22,),
@@ -67,18 +75,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                     color: Theme.of(context).primaryColor,
-                    width: 3.0
+                    width: 2.0
                 ),
               ),
               child: Row(
                 children: [
                   Radio(
                     value: 2,
-                    groupValue: groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        groupValue = 2;
-                      });
+                    groupValue: selectedValueItems,
+                    onChanged: (val) {
+                      setSelectedValue(val!);
                     },
                   ),
                   const Icon(Icons.money, size: 22,),
@@ -91,26 +97,26 @@ class _PaymentScreenState extends State<PaymentScreen> {
             PrimaryButton(
               title: "Continue",
               onPressed: ( ) async{
-              appProvider.clearBuyProduct();
-              appProvider.addBuyProduct(widget.singleProduct);
-
-              if(groupValue == 1){
-                bool value = await FirestoreHelper.instance.uploadOrderedProductFirebase(
-                    appProvider.getBuyProductList, context,  "Cash on delivery"
-                );
                 appProvider.clearBuyProduct();
-                if(value){
-                  Future.delayed(const Duration(seconds: 2), () {
-                    Routes.instance.push(const BottomNavBar(), context);
-                  });
+                appProvider.addBuyProduct(widget.singleProduct);
+
+                if(selectedValueItems == 1){
+                  bool value = await FirestoreHelper.instance.uploadOrderedProductFirebase(
+                      appProvider.getBuyProductList, context,  "Cash on delivery"
+                  );
+                  appProvider.clearBuyProduct();
+                  if(value){
+                    Future.delayed(const Duration(seconds: 2), () {
+                      Routes.instance.push(const BottomNavBar(), context);
+                    });
+                  }
+                }else{
+                  int value = double.parse(appProvider.totalPriceBuyProductList().toString()).round().toInt();
+                  String totalPrice = (value * 100).toString();
+                  await StripeHelper.instance.makePayment(totalPrice.toString(), context);
                 }
-              }else{
-                int value = double.parse(appProvider.totalPriceBuyProductList().toString()).round().toInt();
-                String totalPrice = (value * 100).toString();
-                await StripeHelper.instance.makePayment(totalPrice.toString(), context);
-              }
-             },
-             ),
+              },
+            ),
             const Spacer(),
             Row(
               children: [
