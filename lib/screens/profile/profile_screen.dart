@@ -48,9 +48,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               , style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
             const SizedBox(height: 4,),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 125.0, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 155.0, vertical: 12),
               child: PrimaryButton(
-                title: "Edit Profile",
+                title: "Edit",
                 onPressed: () {
                   Routes.instance.push(const EditProfile(), context);
                 },

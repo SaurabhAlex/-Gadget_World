@@ -21,7 +21,17 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
   @override
   Widget build(BuildContext context) {
     AppProvider appProvider = Provider.of<AppProvider>(context);
-    int groupValue = 2 ;
+    int selectedValueItems = 0  ;
+    @override
+    void initState() {
+      super.initState();
+      selectedValueItems = 1;
+    }
+    void setSelectedValue(int val) {
+      setState(() {
+        selectedValueItems = val;
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Checkout",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
@@ -45,11 +55,9 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
                 children: [
                   Radio(
                     value: 1,
-                    groupValue: groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        groupValue = value!;
-                      });
+                    groupValue: selectedValueItems,
+                    onChanged: (val) {
+                      setSelectedValue(val!);
                     },
                   ),
                   const Icon(Icons.money, size: 22,),
@@ -73,11 +81,9 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
                 children: [
                   Radio(
                     value: 2,
-                    groupValue: groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        groupValue = value!;
-                      });
+                    groupValue: selectedValueItems,
+                    onChanged: (val) {
+                      setSelectedValue(val!);
                     },
                   ),
                   const Icon(Icons.money, size: 22,),
@@ -90,7 +96,7 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
             PrimaryButton(
               title: "Continue",
               onPressed: ( ) async{
-                if(groupValue == 1){
+                if(selectedValueItems == 1){
                   bool value = await FirestoreHelper.instance.uploadOrderedProductFirebase(
                       appProvider.getBuyProductList, context,  "Cash on delivery"
                   );

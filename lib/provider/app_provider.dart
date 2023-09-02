@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/constants/constants.dart';
+import 'package:grocery_app/constants/routes.dart';
 import 'package:grocery_app/firebase_helper/firebase_storage/firebase_storage.dart';
 import 'package:grocery_app/firebase_helper/firestore_helper/firestore_helper.dart';
 import '../model/product_model/product_model.dart';
@@ -54,26 +55,31 @@ class AppProvider with ChangeNotifier{
   
   void updateUserInfoFirebase(BuildContext context, UserModel userModel, File? file) async{
     showLoaderDialog(context);
-    if(file == null){
+    if(file == null && userModel.name == null){
+      Navigator.pop(context);
+    }else if(file == null){
       showLoaderDialog(context);
       _userModel = userModel;
       await FirebaseFirestore.instance.collection("users")
           .doc(_userModel!.id)
           .set(_userModel!.toJson());
       Navigator.of(context, rootNavigator: true).pop();
-      Navigator.pop(context);
+      Navigator.of(context).pop();
+      showMessage("Successfully updated profile");
+      notifyListeners();
     }else {
       showLoaderDialog(context);
       String imageUrl = await FirebaseStorageHelper.instance.uploadUserImage(file);
-      _userModel = userModel.copyWith(image: imageUrl);
+      _userModel = userModel.copyWith(image: imageUrl, name: _userModel!.name!.isEmpty?null:_userModel!.name);
       await FirebaseFirestore.instance.collection("users")
           .doc(_userModel!.id)
           .set(_userModel!.toJson());
       Navigator.of(context, rootNavigator: true).pop();
-      Navigator.pop(context);
+      Navigator.of(context).pop();
+      showMessage("Successfully updated profile");
+      notifyListeners();
     }
-    showMessage("Successfully updated profile");
-    notifyListeners();
+
   }
 
 //total Price
