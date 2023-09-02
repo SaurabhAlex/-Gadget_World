@@ -18,20 +18,21 @@ class CartItemCheckout extends StatefulWidget {
 }
 
 class _CartItemCheckoutState extends State<CartItemCheckout> {
+  int selectedValueItems = 0  ;
+  @override
+  void initState() {
+    super.initState();
+    selectedValueItems = 1;
+  }
+  void setSelectedValue(int val) {
+    setState(() {
+      selectedValueItems = val;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     AppProvider appProvider = Provider.of<AppProvider>(context);
-    int selectedValueItems = 0  ;
-    @override
-    void initState() {
-      super.initState();
-      selectedValueItems = 1;
-    }
-    void setSelectedValue(int val) {
-      setState(() {
-        selectedValueItems = val;
-      });
-    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Checkout",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
